@@ -3,7 +3,8 @@
 This is a simple model to solve XOR problem with using Artificial Neural Networks and Multi-layer network approach.
 
 ## Use
-Run test.py to see the results.<br>
+Run test.py to see the results on terminal.<br>
+Run main.py to see the results on GUI.<br>
 <br>
 Put the inputs like:<br>
 number number<br>
