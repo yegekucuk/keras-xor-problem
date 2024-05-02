@@ -1,27 +1,46 @@
 import tkinter as tk
 from keras.models import Sequential, load_model
-from os import system
-from time import sleep
 from numpy import array
 
 def calculate_xor():
-    # You can implement your Keras model logic here
     global input1
     global input2
     global model
+    global appropriate_inputs
 
-    # Get inputs
-    x1 = int(input1.get())
-    x2 = int(input2.get())
-    x = array([[x1,x2]])
+    try:
+        # Get inputs
+        x1 = int(input1.get())
+        x2 = int(input2.get())
+        x = [[x1,x2]]
 
-    # Get predict
-    y = model.predict(x)
-    pred = round(y[0][0])
+        # Checking if the input is appropriate
+        if x not in appropriate_inputs:
+            raise ValueError
+        
+        # Converting input to numpy array
+        x = array(x)
+        
+        # Get predict
+        y = model.predict(x)
+        pred = round(y[0][0])
 
-    # Display result
-    result_label.config(text="Result: %s" %(str(pred)))
+        # Display result
+        result_label.config(text="Result: %s" %(str(pred)))
 
+    except ValueError:
+        # Display error
+        result_label.config(text="Result: Inappropriate inputs!")
+    except:
+        # Display error
+        result_label.config(text="Result: Error!")
+
+appropriate_inputs = [
+    [[0,0]],
+    [[0,1]],
+    [[1,0]],
+    [[1,1]]
+]
 
 # Load the model
 model : Sequential
